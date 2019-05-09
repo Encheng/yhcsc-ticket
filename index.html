@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+
+    <style>
+        label{
+            margin-left: 20px;
+        }
+        #datepicker{
+            width:180px;
+            margin: 0 20px 20px 20px;
+        }
+        #datepicker > span:hover{
+            cursor: pointer;
+        }
+        #clock{
+            color:white;
+            font: 2em sans-serif;
+            background: black;
+            margin: 5px;
+            padding: 5px;
+            border: solid gray 2px;
+            border-radius: 10px;
+            width:140px;
+            text-align:center;
+          }
+    </style>
+
+    <title>搶！</title>
+  </head>
+  <body onload="startTime()">
+    <header>
+        <div class="navbar navbar-dark bg-dark box-shadow">
+            <div class="container d-flex justify-content-between">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                <svg xmlns="https://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                <strong>永運搶票系統</strong>
+                </a>
+            </div>
+        </div>
+    </header>
+    <main role="main">
+        <div class="container">
+            <section class="jumbotron text-center">
+            <div class="container">
+                <div class="alert alert-warning" role="alert">
+                    記得<a href="https://scr.cyc.org.tw/tp10.aspx?module=login_page&files=login" class="alert-link">永和運動中心</a>會員要先登入！
+                </div>
+                <h4>選擇日期: </h4>
+                <div id="datepicker" class="input-group date" data-date-format="mm-dd-yyyy" style="margin:10px auto;">
+                    <input id="date" class="form-control" type="text" readonly />
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+                <div>
+                    <button id="submit"  type="button" class="btn btn-primary">送出</button>
+                </div>
+
+                <div id="url_link" class="row" style="margin:20px auto;display:none;">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">搶票連結</h5>
+                                <p class="card-text">10:00 - 11:00</p>
+                                <a id="link_10" href="#" class="btn btn-primary" id="11clock">訂位</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">搶票連結</h5>
+                                <p class="card-text">11:00 - 12:00</p>
+                                <a  id="link_11" href="#" class="btn btn-primary" id="11clock">訂位</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="check_ticket" class="row" style="margin:20px auto;display:none;">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">場地租借狀況</h5>
+                                <p class="card-text">事先查看當天場地活動</p>
+                                <a id="check_date_link" href="#" class="btn btn-primary" id="11clock">查詢</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+        </div>
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card mb-12 box-shadow">
+                        <div class="card-body">
+                            <div style="margin: auto;max-width: 180px;text-align: center;">
+                                <span style="font-size: 25px;">中原標準時間</span>
+                            </div>
+                            <div id="clock" style="margin:10px auto;"></div>
+                            <div class="alert alert-warning" role="alert" style="text-align:center">
+                                晚間12點準時開搶！
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+    <!-- <script src="index.bundle.js"></script> -->
+
+    <script type="text/javascript">
+        $(function(){
+            $("#datepicker").datepicker({
+                autoclose: true,
+                todayHighlight: true
+          }).datepicker('update', new Date());
+          $("#submit").click(function(){
+              var current_date = $("#date").val();
+              var test = current_date.split("-");
+              var conbine = test[2]+'/'+test[0]+'/'+test[1];
+              console.log(conbine)
+              $("#url_link").show();
+              $("#link_10").attr("href", "https://scr.cyc.org.tw//tp10.aspx?module=net_booking&files=booking_place&StepFlag=25&QPid=1135&QTime=10&PT=1&D="+conbine)
+              $("#link_11").attr("href", "https://scr.cyc.org.tw//tp10.aspx?module=net_booking&files=booking_place&StepFlag=25&QPid=1135&QTime=11&PT=1&D="+conbine)
+              $("#check_ticket").show();
+              $("#check_date_link").attr("href", "https://scr.cyc.org.tw/tp10.aspx?module=net_booking&files=booking_place&StepFlag=2&PT=1&D="+conbine+"&D2=1")
+              console.log(current_date)
+          });
+        });
+        //時鐘
+        function startTime(){
+            var today = new Date();
+            var hh = today.getHours();
+            var mm = today.getMinutes();
+            var ss = today.getSeconds();
+            mm = checkTime(mm);
+            ss = checkTime(ss);
+            document.getElementById('clock').innerHTML = hh + ":" + mm + ":" + ss;
+            var timeoutId = setTimeout(startTime, 500);
+          }
+          function checkTime(i){
+            if(i < 10) {
+              i = "0" + i;
+            }
+            return i;
+          }
+    </script>
+    </body>
