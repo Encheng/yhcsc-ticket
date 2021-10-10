@@ -3,7 +3,7 @@
 <head>
     <title></title>
 	<meta charset="utf-8" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
 
@@ -26,13 +26,13 @@
     <div id="kk_show"></div>
 
     <script>
-    var g_hou, g_min, g_sec, g_ms; //時,分,秒,毫秒
-    var area_x = 0;  //場地
-    var t_slot = 0;  //時段
-    var t_start = 0; //起點
-    var t_delay = 0; //延遲
-    var t_ms = 0;    //計時
-    var running = 0; //啟動
+    var g_hou, g_min, g_sec, g_ms;
+    var area_x = 0;
+    var t_slot = 0;
+    var t_start = 0;
+    var t_delay = 0;
+    var t_ms = 0;
+    var running = 0;
     var run_date = new Date();
 
     $(function() {
@@ -46,62 +46,62 @@
         KK_22();
 
         $("#a3").click(function () {
-            area_x = 1135; //羽3
+            area_x = 1135; //3
             KK_22();
         });
 
         $("#a4").click(function () {
-            area_x = 1136; //羽4
+            area_x = 1136; //4
             KK_22();
         });
 
         $("#a5").click(function () {
-            area_x = 1137; //羽5
+            area_x = 1137; //5
             KK_22();
         });
 
         $("#a6").click(function () {
-            area_x = 1138; //羽6
+            area_x = 1138; //6
             KK_22();
         });
 
         $("#t8").click(function () {
-            t_slot = 8; //時段 早8~9
+            t_slot = 8; //8~9
             KK_22();
         });
 
         $("#t9").click(function () {
-            t_slot = 9; //時段 早9~10
+            t_slot = 9; //9~10
             KK_22();
         });
 
         $("#t10").click(function () {
-            t_slot = 10; //時段 早10~11
+            t_slot = 10; //10~11
             KK_22();
         });
 
         $("#t11").click(function () {
-            t_slot = 11; //時段 早11~12
+            t_slot = 11; //11~12
             KK_22();
         });
 
         $("#t18").click(function () {
-            t_slot = 18; //時段 晚6~7
+            t_slot = 18; //6~7
             KK_22();
         });
 
         $("#t19").click(function () {
-            t_slot = 19; //時段 晚7~8
+            t_slot = 19; //7~8
             KK_22();
         });
 
         $("#t20").click(function () {
-            t_slot = 20; //時段 晚8~9
+            t_slot = 20; //8~9
             KK_22();
         });
 
-        $("#t21").click(function () {          
-            t_slot = 21; //時段 晚9~10
+        $("#t21").click(function () {
+            t_slot = 21; //9~10
             KK_22();
         });
 
@@ -123,7 +123,7 @@
             run_date = document.getElementById("bookdate");
             KK_22();
         });
-        
+
         $("#min_start").change(function () {
             t_start = document.getElementById('min_start').value;
             KK_22();
@@ -146,7 +146,7 @@
 
         html = "";
         html += '<center>';
-        html += '<h2>第一 選擇日期</h2>';
+        html += '<h2>日  期</h2>';
         html += '<br/>';
         html += '<input id="bookdate" type="date">';
         html += '</center>';
@@ -158,16 +158,16 @@
     function KK_21() {
         html = "";
         html += '<center>';
-        html += '<h2>第二 選擇球場</h2>';
+        html += '<h2>場  地</h2>';
         html += '<br/>';
-        html += '<button id="a3" type="button">羽3 1135</button>';
+        html += '<button id="a3" type="button">球場 3號</button>';
         html += '<span> </span>';
-        html += '<button id="a4" type="button">羽4 1136</button>';
+        html += '<button id="a4" type="button">球場 4號</button>';
         html += '<br/>';
         html += '<br/>';
-        html += '<button id="a5" type="button">羽5 1137</button>';
+        html += '<button id="a5" type="button">球場 5號</button>';
         html += '<span> </span>';
-        html += '<button id="a6" type="button">羽6 1138</button>';
+        html += '<button id="a6" type="button">球場 6號</button>';
         html += '</center>';
         document.getElementById("show21").innerHTML = html;
     }
@@ -175,7 +175,7 @@
     function KK_31() {
         html = "";
         html += '<center>';
-        html += '<h2>第三 選擇時段</h2>';
+        html += '<h2>時  段</h2>';
         html += '<br/>';
         html += '<button id="t8" type="button">08 ~ 09</button>';
         html += '<span> </span>';
@@ -201,7 +201,7 @@
     function KK_12() {
         var html = "";
         html += '<center>';
-        html += '<h2>永運羽球 延遲預約</h2>';
+        html += '<h2>延 遲 預 約</h2>';
         html += '<div id="KK12_1" style="font-size:40px">';
         html += '</div>';
         html += '<div id="KK12_2" style="font-size:40px">';
@@ -214,15 +214,15 @@
     function KK_22() {
         html = "";
         html += '<center>';
-        html += '<h2>第四 確認球場時間</h2>';
+        html += '<h2>相 關 資 訊</h2>';
         html += '</center>';
         html += '<span>- 預約日期 : </span>';
         html +=  run_date.value;
         html += '<br/>';
-        html += '<span>- 羽球場地 : </span>';
+        html += '<span>- 場地編號 : </span>';
         html +=  area_x;
         html += '<br/>';
-        html += '<span>- 打球時段 : </span>';
+        html += '<span>- 運動時段 : </span>';
         html +=  t_slot;
         html += '<br/>';
         html += '<span>- 開始分鐘 : </span>';
@@ -236,13 +236,13 @@
     function KK_32() {
         html = "";
         html += '<center>';
-        html += '<h2>第五 啟動延遲毫秒</h2>';
+        html += '<h2>延 遲 毫 秒</h2>';
         html += '<button id="startrun" type="button">啟 動</button>';
         html += '<a id="link_xx" href="#"></a>';
         html += '<br/>';
         html += '<br/>';
         html += '<span>起點(準分) : </span>';
-        html += '<input id="min_start" type="text" name="min" value="0"/>';      
+        html += '<input id="min_start" type="text" name="min" value="0"/>';
         html += '<br/>';
         html += '<br/>';
         html += '<span>延遲(毫秒) : </span>';
