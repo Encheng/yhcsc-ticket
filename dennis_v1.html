@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html lang="">
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+
+    <style>
+    #kk_show {
+        position:absolute;
+        display:none;
+        top:0px;
+        left:0px;
+        background:rgb(246, 245, 237);
+    }
+    .kk_9x9 {
+        position:absolute;
+        display:block;
+        background:rgb(243, 242, 236);
+    }
+    </style>
+</head>
+<body>
+    <div id="kk_show"></div>
+
+    <script>
+    var g_hou, g_min, g_sec, g_ms; //時,分,秒,毫秒
+    var area_x = 0;  //場地
+    var t_slot = 0;  //時段
+    var t_start = 0; //起點
+    var t_delay = 0; //延遲
+    var t_ms = 0;    //計時
+    var running = 0; //啟動
+    var run_date = new Date();
+
+    $(function() {
+        KKtimer();
+        KKshow9x9(2,3);
+        KK_11();
+        KK_12();
+        KK_31();
+        KK_21();
+        KK_32();
+        KK_22();
+
+        $("#a3").click(function () {
+            area_x = 1135; //羽3
+            KK_22();
+        });
+
+        $("#a4").click(function () {
+            area_x = 1136; //羽4
+            KK_22();
+        });
+
+        $("#a5").click(function () {
+            area_x = 1137; //羽5
+            KK_22();
+        });
+
+        $("#a6").click(function () {
+            area_x = 1138; //羽6
+            KK_22();
+        });
+
+        $("#t8").click(function () {
+            t_slot = 8; //時段 早8~9
+            KK_22();
+        });
+
+        $("#t9").click(function () {
+            t_slot = 9; //時段 早9~10
+            KK_22();
+        });
+
+        $("#t10").click(function () {
+            t_slot = 10; //時段 早10~11
+            KK_22();
+        });
+
+        $("#t11").click(function () {
+            t_slot = 11; //時段 早11~12
+            KK_22();
+        });
+
+        $("#t18").click(function () {
+            t_slot = 18; //時段 晚6~7
+            KK_22();
+        });
+
+        $("#t19").click(function () {
+            t_slot = 19; //時段 晚7~8
+            KK_22();
+        });
+
+        $("#t20").click(function () {
+            t_slot = 20; //時段 晚8~9
+            KK_22();
+        });
+
+        $("#t21").click(function () {          
+            t_slot = 21; //時段 晚9~10
+            KK_22();
+        });
+
+
+        $("#startrun").click(function () {
+            var date0 = run_date.value;
+            var date1 = date0.split("-");
+            var date2 = date1[0]+'/'+date1[1]+'/'+date1[2];
+            $("#link_xx").attr({
+		target:"_blank",
+                href:'https://scr.cyc.org.tw//tp10.aspx?module=net_booking&files=booking_place&StepFlag=25&QPid='+area_x+'&QTime='+t_slot+'&PT=1&D='+date2
+            });
+            //window.location = $('#link_xx').attr('href');
+            document.getElementById("KK12_1").innerHTML = "Running...";
+            running = 1;
+        });
+
+        $("#bookdate").change(function () {
+            run_date = document.getElementById("bookdate");
+            KK_22();
+        });
+        
+        $("#min_start").change(function () {
+            t_start = document.getElementById('min_start').value;
+            KK_22();
+        });
+
+        $("#ms_delay").change(function () {
+            t_delay = document.getElementById('ms_delay').value;
+            KK_22();
+        });
+    });
+
+    function KK_11() {
+        var day = run_date.getDate() + 14;
+        var month = run_date.getMonth() + 1;
+        var year = run_date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+        var the_day = year + "-" + month + "-" + day;
+
+        html = "";
+        html += '<center>';
+        html += '<h2>第一 選擇日期</h2>';
+        html += '<br/>';
+        html += '<input id="bookdate" type="date">';
+        html += '</center>';
+        document.getElementById("show11").innerHTML = html;
+        $("#bookdate").attr("value", the_day);
+        run_date = document.getElementById("bookdate");
+    }
+
+    function KK_21() {
+        html = "";
+        html += '<center>';
+        html += '<h2>第二 選擇球場</h2>';
+        html += '<br/>';
+        html += '<button id="a3" type="button">羽3 1135</button>';
+        html += '<span> </span>';
+        html += '<button id="a4" type="button">羽4 1136</button>';
+        html += '<br/>';
+        html += '<br/>';
+        html += '<button id="a5" type="button">羽5 1137</button>';
+        html += '<span> </span>';
+        html += '<button id="a6" type="button">羽6 1138</button>';
+        html += '</center>';
+        document.getElementById("show21").innerHTML = html;
+    }
+
+    function KK_31() {
+        html = "";
+        html += '<center>';
+        html += '<h2>第三 選擇時段</h2>';
+        html += '<br/>';
+        html += '<button id="t8" type="button">08 ~ 09</button>';
+        html += '<span> </span>';
+        html += '<button id="t9" type="button">09 ~ 10</button>';
+        html += '<span> </span>';
+        html += '<button id="t10" type="button">10 ~ 11</button>';
+        html += '<span> </span>';
+        html += '<button id="t11" type="button">11 ~ 12</button>';
+        html += '<br/>';
+        html += '<br/>';
+        html += '<br/>';
+        html += '<button id="t18" type="button">18 ~ 19</button>';
+        html += '<span> </span>';
+        html += '<button id="t19" type="button">19 ~ 20</button>';
+        html += '<span> </span>';
+        html += '<button id="t20" type="button">20 ~ 21</button>';
+        html += '<span> </span>';
+        html += '<button id="t21" type="button">21 ~ 22</button>';
+        html += '</center>';
+        document.getElementById("show31").innerHTML = html;
+    }
+
+    function KK_12() {
+        var html = "";
+        html += '<center>';
+        html += '<h2>永運羽球 延遲預約</h2>';
+        html += '<div id="KK12_1" style="font-size:40px">';
+        html += '</div>';
+        html += '<div id="KK12_2" style="font-size:40px">';
+        html += '</div>';
+        html += '</center>';
+        document.getElementById("show12").innerHTML = html;
+        document.getElementById("KK12_1").innerHTML = "not yet~";
+    }
+
+    function KK_22() {
+        html = "";
+        html += '<center>';
+        html += '<h2>第四 確認球場時間</h2>';
+        html += '</center>';
+        html += '<span>- 預約日期 : </span>';
+        html +=  run_date.value;
+        html += '<br/>';
+        html += '<span>- 羽球場地 : </span>';
+        html +=  area_x;
+        html += '<br/>';
+        html += '<span>- 打球時段 : </span>';
+        html +=  t_slot;
+        html += '<br/>';
+        html += '<span>- 開始分鐘 : </span>';
+        html +=  t_start;
+        html += '<br/>';
+        html += '<span>- 延遲毫秒 : </span>';
+        html +=  t_delay;
+        document.getElementById("show22").innerHTML = html;
+    }
+
+    function KK_32() {
+        html = "";
+        html += '<center>';
+        html += '<h2>第五 啟動延遲毫秒</h2>';
+        html += '<button id="startrun" type="button">啟 動</button>';
+        html += '<a id="link_xx" href="#"></a>';
+        html += '<br/>';
+        html += '<br/>';
+        html += '<span>起點(準分) : </span>';
+        html += '<input id="min_start" type="text" name="min" value="0"/>';      
+        html += '<br/>';
+        html += '<br/>';
+        html += '<span>延遲(毫秒) : </span>';
+        html += '<input id="ms_delay" type="text" name="ms" value="0"/>';
+        html += '</center>';
+        document.getElementById("show32").innerHTML = html;
+    }
+
+    function KKshow9x9(row, col) {
+        var html = "";
+        var i, j;
+        var left, top;
+
+        //clear kk_show
+        document.getElementById("kk_show").innerHTML = html;
+
+        var h = (screen.availHeight) / 4;
+        var w = (screen.availWidth) / 3;
+
+        //create 9x9 UI on kk_show area
+        for (i = 1; i <= col; i++) {
+            for (j = 1; j <= row; j++) {
+                top = (i-1) * (h + 5) + 5;
+                left = (j-1) * (w + 5) + 5;
+                html += '<div id="show' + i + j +'" class="kk_9x9" style="left:' + left + 'px; top:' + top + 'px; width:' + w + 'px; height:' + h + 'px">';
+                html += '</div>';
+            }
+        }
+        document.getElementById("kk_show").innerHTML = html;
+        document.getElementById("kk_show").style.display = "block";
+       // alert("test");
+    }
+
+    function KKtimer() {
+        var t = new Date();
+        g_hou = t.getHours();
+        g_min = t.getMinutes();
+        g_sec = t.getSeconds();
+        g_ms = t.getMilliseconds();
+        if (g_hou < 10) g_hou = "0" + g_hou;
+        if (g_min < 10) g_min = "0" + g_min;
+        if (g_sec < 10) g_sec = "0" + g_sec;
+        if (g_ms < 10) g_sec = "00" + g_sec;
+        if (g_min == t_start) t_ms = (g_sec * 1000 + g_ms);
+        if (running && (t_ms > t_delay)) {
+            window.location = $('#link_xx').attr('href');
+            document.getElementById("KK12_1").innerHTML = g_hou + ":" + g_min + ":" + g_sec;
+            document.getElementById("KK12_2").innerHTML = t_ms;
+            running = 0;
+	    t_ms = 0;
+        }
+        setTimeout("KKtimer()",10);
+    }
+    </script>
+</body>
+</html>
