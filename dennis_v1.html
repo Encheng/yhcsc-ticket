@@ -26,7 +26,7 @@
     <div id="kk_show"></div>
 
     <script>
-    var g_hou, g_min, g_sec, g_ms;
+    var g_min, g_ms;
     var area_x = 1135;
     var t_slot = 10;
     var t_delay = 0;
@@ -48,7 +48,6 @@
 		target:"_blank",
                 href:'https://scr.cyc.org.tw//tp10.aspx?module=net_booking&files=booking_place&StepFlag=25&QPid='+area_x+'&QTime='+t_slot+'&PT=1&D='+date2
             });
-            //window.location = $('#link_xx').attr('href');
             document.getElementById("KK11").innerHTML = "Running...";
             running = 1;
         });
@@ -84,12 +83,14 @@
     });
 
     function KK_11() {
-        var day = run_date.getDate() + 14;
+        run_date.setDate(run_date.getDate() + 14);
+
+        var day = run_date.getDate();
         var month = run_date.getMonth() + 1;
         var year = run_date.getFullYear();
 
+        if (day < 10) day = "0" + day; 
         if (month < 10) month = "0" + month;
-        if (day < 10) day = "0" + day;
         var the_day = year + "-" + month + "-" + day;
 
         var html = "";
@@ -164,18 +165,15 @@
 
     function KKtimer() {
         var t = new Date();
-        g_hou = t.getHours();
         g_min = t.getMinutes();
-        g_sec = t.getSeconds();
         g_ms = t.getMilliseconds();
-        if (g_min == 0) t_ms = (g_sec * 1000 + g_ms);
-        if (running && (t_ms > t_delay)) {
+
+        if (running && (g_min == 0 && g_ms > t_delay)) {
             window.location = $('#link_xx').attr('href');
-            document.getElementById("KK11").innerHTML = t_ms;
             running = 0;
-	        t_ms = 0;
+            document.getElementById("KK11").innerHTML = g_ms;
         }
-        setTimeout("KKtimer()",10);
+        setTimeout("KKtimer()",1);
     }
     </script>
 </body>
